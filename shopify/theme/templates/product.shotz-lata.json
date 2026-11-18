@@ -1,0 +1,7 @@
+{
+  "layout": "shotz-lata",
+  "sections": {
+    "main": { "type": "shotz-product", "settings": {} }
+  },
+  "order": ["main"]
+}

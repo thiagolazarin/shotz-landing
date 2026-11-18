@@ -1,0 +1,24 @@
+{%- comment -%} Dados estruturados de produto: uma oferta por variante. Sem nota inventada: aggregateRating só aparece com dados do app de avaliações. {%- endcomment -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "brand": { "@type": "Brand", "name": {{ product.vendor | json }} },
+  "description": {{ product.description | strip_html | strip_newlines | strip | truncate: 500 | json }},
+  "url": {{ request.origin | append: product.url | json }},
+  "productID": {{ product.id | json }},
+  "image": [
+    {%- assign sep = '' -%}
+    {%- for media in product.media limit: 6 -%}{%- if media.media_type == 'image' -%}{{ sep }}{{ media | image_url: width: 1200 | prepend: 'https:' | json }}{%- assign sep = ',' -%}{%- endif -%}{%- endfor -%}
+  ],
+  {%- if product.metafields.reviews.rating.value != blank and product.metafields.reviews.rating_count.value > 0 -%}
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": {{ product.metafields.reviews.rating.value.rating | json }}, "bestRating": {{ product.metafields.reviews.rating.value.scale_max | json }}, "reviewCount": {{ product.metafields.reviews.rating_count.value | json }} },
+  {%- endif -%}
+  "offers": [
+    {%- for v in product.variants -%}
+    { "@type": "Offer", "sku": {{ v.sku | json }}, "name": {{ v.title | json }}, "price": {{ v.price | divided_by: 100.0 | json }}, "priceCurrency": {{ cart.currency.iso_code | json }}, "availability": "https://schema.org/{% if v.available %}InStock{% else %}OutOfStock{% endif %}", "url": {{ request.origin | append: v.url | json }} }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+</script>

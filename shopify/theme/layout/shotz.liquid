@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FAF9F5">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <title>{{ page_title }}{%- unless page_title contains shop.name %} | {{ shop.name }}{%- endunless -%}</title>
+  {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- endif -%}
+  {%- if settings.favicon != blank -%}<link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 64, height: 64 }}">{%- endif -%}
+  {% render 'shotz-meta-tags' %}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,100;1,9..144,300..500,100&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+  {{ 'shotz.css' | asset_url | stylesheet_tag }}
+
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied', wait_for_update: 500 });
+</script>
+  {%- if request.page_type == 'product' -%}{% render 'shotz-structured-data', product: product %}{%- endif -%}
+
+  {{ content_for_header }}
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  {% render 'shotz-icons' %}
+  {% section 'shotz-header' %}
+  <main id="conteudo">
+    {{ content_for_layout }}
+  </main>
+  {% section 'shotz-footer' %}
+  <script src="{{ 'shotz.js' | asset_url }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}, página inicial">
+          {%- if settings.logo != blank -%}
+            {{ settings.logo | image_url: height: 56 | image_tag: class: 'logo__img', alt: shop.name, loading: 'lazy' }}
+          {%- else -%}
+          <span class="logo__word">SHOTZ</span>
+          {%- endif -%}
+        </a>
+        <p>{{ section.settings.description | escape }}</p>
+        {%- if section.settings.show_newsletter -%}
+        {%- form 'customer', class: 'newsletter', id: 'shotz-newsletter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <label for="newsletter-email">Receba novidades e ofertas</label>
+          <div class="newsletter__row">
+            <input id="newsletter-email" name="contact[email]" type="email" autocomplete="email" placeholder="seu@email.com" required>
+            <button class="btn btn--primary btn--sm" type="submit">Cadastrar</button>
+          </div>
+          <p class="newsletter__msg" role="status">
+            {%- if form.posted_successfully? -%}Cadastro feito. Você vai receber nossas novidades.
+            {%- elsif form.errors -%}Confira o e-mail digitado e tente de novo.{%- endif -%}
+          </p>
+        {%- endform -%}
+        {%- endif -%}
+      </div>
+      <div class="footer__cols">
+        <nav class="footer__col" aria-labelledby="f-nav">
+          <h2 id="f-nav">SHOTZ</h2>
+          <ul>
+            <li><a href="#produto">O produto</a></li>
+            <li><a href="#comprar">Sabores</a></li>
+            <li><a href="#ciencia">Nossa ciência</a></li>
+            <li><a href="#avaliacoes">Avaliações</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </nav>
+        <div class="footer__col footer__col--wide">
+          <h2>Atendimento</h2>
+          <ul>
+            {%- if section.settings.contact_email != blank -%}<li><a class="with-icon" href="mailto:{{ section.settings.contact_email }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-mail"/></svg>{{ section.settings.contact_email }}</a></li>{%- endif -%}
+            <li><a class="with-icon" href="{{ section.settings.contact_page.url | default: '/pages/contact' }}"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-message"/></svg>Formulário de contato</a></li>
+            {%- if settings.social_instagram_link != blank -%}<li><a class="with-icon" href="{{ settings.social_instagram_link }}" rel="noopener"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a></li>{%- endif -%}
+          </ul>
+        </div>
+        <nav class="footer__col" aria-labelledby="f-policies">
+          <h2 id="f-policies">Políticas</h2>
+          <ul>
+            {%- for policy in shop.policies -%}
+            <li><a href="{{ policy.url }}">{{ policy.title | escape }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+        <div class="footer__col footer__col--wide">
+          <h2>Pagamento e entrega</h2>
+          <ul>
+            <li><p class="with-icon"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-card"/></svg>Pagamento no checkout seguro da Shopify.</p>
+              {%- if shop.enabled_payment_types.size > 0 -%}
+              <ul class="payment-icons" aria-label="Formas de pagamento">
+                {%- for type in shop.enabled_payment_types -%}<li>{{ type | payment_type_svg_tag: class: 'payment-icon' }}</li>{%- endfor -%}
+              </ul>
+              {%- endif -%}
+            </li>
+            <li><p class="with-icon"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-truck"/></svg>{{ section.settings.shipping_note | escape }}</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}. Todos os direitos reservados.{% if section.settings.legal_info != blank %} {{ section.settings.legal_info | escape }}{% endif %}</p>
+      <button class="link-btn" type="button" data-open-dialog="consent-dialog">Preferências de cookies</button>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "SHOTZ · Rodapé",
+  "settings": [
+    { "type": "text", "id": "description", "label": "Descrição curta", "default": "Proteína em formato de shot. 23 g em 100 ml, pronta para beber." },
+    { "type": "checkbox", "id": "show_newsletter", "label": "Mostrar cadastro de newsletter", "default": true },
+    { "type": "text", "id": "contact_email", "label": "E-mail de contato", "default": "contato@meushotz.com.br" },
+    { "type": "page", "id": "contact_page", "label": "Página de contato" },
+    { "type": "text", "id": "shipping_note", "label": "Texto de entrega", "default": "Frete calculado pelo CEP. Grátis acima de R$ 129,90." },
+    { "type": "textarea", "id": "legal_info", "label": "Dados legais (razão social, CNPJ, endereço)", "info": "Exigido pelo Decreto 7.962/2013 para lojas on-line no Brasil." }
+  ]
+}
+{% endschema %}

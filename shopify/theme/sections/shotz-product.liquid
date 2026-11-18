@@ -1,0 +1,729 @@
+{%- comment -%} SHOTZ · landing de produto (hero → CTA final, compra, carrinho lateral, diálogos) {%- endcomment -%}
+
+
+  <!-- 2 · HERO -->
+  <section class="hero" id="inicio" aria-labelledby="hero-title" data-hero>
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow">Shot de proteína pronto para beber</p>
+        <h1 id="hero-title" class="hero__title">Proteína que acompanha o seu <em>ritmo.</em></h1>
+        <p class="hero__lead">23g de proteína em um shot de 100ml. Prático, leve e pronto para beber. Sem shaker, sem complicação.</p>
+      </div>
+
+      <div class="hero__art">
+{%- liquid
+  assign hero = section.settings.hero_image
+  assign hero_alt = hero.alt | default: 'Garrafas de SHOTZ com frutas tropicais, gelo e luz natural'
+-%}
+{%- if hero != blank -%}
+        <div class="hero-art">
+          {{ hero | image_url: width: 1400 | image_tag: widths: '480, 640, 800, 1000, 1200, 1400', sizes: '(min-width: 1024px) 48vw, 92vw', class: 'hero-art__photo', loading: 'eager', fetchpriority: 'high', alt: hero_alt }}
+        </div>
+{%- else -%}
+        <div class="hero-art" role="img" aria-label="Garrafas de SHOTZ Frutas Tropicais e Cranberry com metades de limão e cranberries, sob luz de sol">
+          <div class="hero-art__blob" aria-hidden="true">
+            <svg viewBox="0 0 600 600" preserveAspectRatio="none"><path fill="currentColor" d="M302 22c96 4 190 46 238 128 47 80 44 186 6 270-38 85-112 150-201 166-90 16-196-18-257-90C27 424 5 324 21 236 37 148 101 72 180 38c38-16 80-18 122-16Z"/></svg>
+          </div>
+          <div class="hero-art__sun" aria-hidden="true"></div>
+          <div class="hero-art__shadow" aria-hidden="true"></div>
+          <img class="hero-art__fruit hero-art__fruit--lemon-b" src="{{ 'shotz-slice-lemon-b.webp' | asset_url }}" alt="" width="240" height="240" decoding="async">
+          <img class="hero-art__fruit hero-art__fruit--lemon-c" src="{{ 'shotz-slice-lemon-c.webp' | asset_url }}" alt="" width="240" height="240" decoding="async">
+          <img class="hero-art__bottle hero-art__bottle--back" src="{{ 'shotz-bottle-cranberry-360.webp' | asset_url }}" srcset="{{ 'shotz-bottle-cranberry-180.webp' | asset_url }} 180w, {{ 'shotz-bottle-cranberry-360.webp' | asset_url }} 360w" sizes="(min-width: 1024px) 140px, 22vw" alt="" width="360" height="870" decoding="async">
+          <img class="hero-art__bottle hero-art__bottle--main" src="{{ 'shotz-bottle-tropical-360.webp' | asset_url }}" srcset="{{ 'shotz-bottle-tropical-180.webp' | asset_url }} 180w, {{ 'shotz-bottle-tropical-360.webp' | asset_url }} 360w" sizes="(min-width: 1024px) 170px, 27vw" alt="" width="360" height="866" decoding="async" fetchpriority="high">
+          <img class="hero-art__fruit hero-art__fruit--lemon-a" src="{{ 'shotz-slice-lemon-a.webp' | asset_url }}" alt="" width="300" height="300" decoding="async">
+          <img class="hero-art__fruit hero-art__fruit--half" src="{{ 'shotz-berry-half-a.webp' | asset_url }}" alt="" width="200" height="200" decoding="async">
+          <img class="hero-art__fruit hero-art__fruit--berry-a" src="{{ 'shotz-berry-a.webp' | asset_url }}" alt="" width="180" height="180" decoding="async">
+          <img class="hero-art__fruit hero-art__fruit--berry-b" src="{{ 'shotz-berry-b.webp' | asset_url }}" alt="" width="180" height="180" decoding="async">
+          <p class="hero-art__chip hero-art__chip--a" aria-hidden="true"><span class="hero-art__chip-dot"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span><span><b>23g</b>de proteína</span></p>
+          <p class="hero-art__chip hero-art__chip--b" aria-hidden="true"><span class="hero-art__chip-dot"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span><span><b>Zero</b>lactose</span></p>
+        </div>
+{%- endif -%}
+      </div>
+
+      <div class="hero__buy">
+        <ul class="hero__stats" aria-label="Por unidade">
+          <li><strong>23<small>g</small></strong><span>de proteína</span></li>
+          <li><strong>95</strong><span>kcal</span></li>
+          <li><strong>100<small>ml</small></strong><span>por shot</span></li>
+        </ul>
+        <div class="hero__ctas">
+          <a class="btn btn--primary btn--lg" href="#comprar" data-track-cta="hero">Experimente SHOTZ <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn--ghost btn--lg" href="#produto">Conheça o produto</a>
+        </div>
+        <ul class="trust-row" aria-label="Condições">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Frete grátis acima de R$ 129,90</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Checkout seguro</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg>Assinatura com 15% off</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · O QUE É -->
+  <section class="section" id="produto" aria-labelledby="what-title">
+    <div class="container">
+      <header class="section-head section-head--split reveal">
+        <div style="display:grid;gap:18px">
+          <p class="eyebrow">O produto</p>
+          <h2 id="what-title" class="h2">Esqueça o shake. Conheça uma nova forma de consumir proteína.</h2>
+        </div>
+        <p class="lead">Uma dose de proteína em um formato compacto, refrescante e pronto para beber. SHOTZ foi criado para facilitar sua rotina, onde quer que você esteja.</p>
+      </header>
+
+      <ul class="feature-cards">
+        <li class="feature-card reveal">
+          <div class="feature-card__visual">
+            <span class="feature-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-sparkles"/></svg></span>
+            <ol class="steps-compare" aria-label="Com o shake: medir, misturar e lavar. Com SHOTZ: abrir e beber.">
+              <li><s>Medir o pó</s></li>
+              <li><s>Misturar e agitar</s></li>
+              <li><s>Lavar a coqueteleira</s></li>
+              <li class="is-shotz">Abrir e beber</li>
+            </ol>
+          </div>
+          <h3>Pronto para beber</h3>
+          <p>Sem preparo, sem coqueteleira e sem complicação.</p>
+        </li>
+        <li class="feature-card reveal">
+          <div class="feature-card__visual">
+            <span class="feature-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-backpack"/></svg></span>
+            <div class="size-visual" aria-hidden="true">
+              <img class="size-visual__bottle" src="{{ 'shotz-bottle-tropical-180.webp' | asset_url }}" srcset="{{ 'shotz-bottle-tropical-180.webp' | asset_url }} 180w, {{ 'shotz-bottle-tropical-360.webp' | asset_url }} 360w" sizes="54px" alt="" width="360" height="866" decoding="async" loading="lazy">
+              <div class="size-visual__ruler"><span style="bottom:0"></span><span style="bottom:20%"></span><span style="bottom:40%"></span><span style="bottom:60%"></span><span style="bottom:80%"></span><span style="bottom:100%"></span></div>
+              <p class="size-visual__label">100<small>ml</small></p>
+            </div>
+          </div>
+          <h3>Cabe na sua rotina</h3>
+          <p>Uma embalagem compacta de 100ml, fácil de levar para qualquer lugar.</p>
+        </li>
+        <li class="feature-card reveal">
+          <div class="feature-card__visual">
+            <span class="feature-card__icon" aria-hidden="true"><svg class="icon"><use href="#i-dna"/></svg></span>
+            <div class="ring-visual" aria-hidden="true">
+              <svg viewBox="0 0 120 120"><circle class="ring-visual__track" cx="60" cy="60" r="52" fill="none" stroke-width="10"/><circle class="ring-visual__value" cx="60" cy="60" r="52" fill="none" stroke-width="10" pathLength="100"/></svg>
+              <p class="ring-visual__text">23g<small>por shot</small></p>
+            </div>
+          </div>
+          <h3>Proteína em cada shot</h3>
+          <p>23g de proteína em uma única unidade.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 · BENEFÍCIOS -->
+  <section class="section benefits" id="beneficios" aria-labelledby="benefits-title">
+    <div class="container">
+      <header class="section-head section-head--center reveal">
+        <p class="eyebrow">Por unidade de 100 ml</p>
+        <h2 id="benefits-title" class="h2">Pequeno no tamanho. <em>Completo</em> na praticidade.</h2>
+      </header>
+      <div class="benefits__layout">
+        <ul class="benefit-list benefit-list--left">
+          <li class="benefit reveal">
+            <p class="benefit__value">23<small>g</small></p>
+            <h3 class="benefit__label">Proteína</h3>
+            <p class="benefit__desc">Uma dose concentrada de proteína em cada unidade de 100 ml.</p>
+          </li>
+          <li class="benefit reveal">
+            <p class="benefit__value">95<small>kcal</small></p>
+            <h3 class="benefit__label">Calorias</h3>
+            <p class="benefit__desc">Uma opção leve para incluir no dia a dia.</p>
+          </li>
+          <li class="benefit reveal">
+            <p class="benefit__value">0,8<small>g</small></p>
+            <h3 class="benefit__label">Carboidratos</h3>
+            <p class="benefit__desc">Menos de 1 g de carboidratos por unidade.</p>
+          </li>
+        </ul>
+        <div class="benefits__visual" aria-hidden="true">
+          <div class="benefits__sun"></div>
+          <div class="benefits__ring"></div>
+          <img class="benefits__bottle" src="{{ 'shotz-bottle-tropical-360.webp' | asset_url }}" srcset="{{ 'shotz-bottle-tropical-180.webp' | asset_url }} 180w, {{ 'shotz-bottle-tropical-360.webp' | asset_url }} 360w" sizes="(min-width: 1024px) 168px, 104px" alt="" width="360" height="866" decoding="async" loading="lazy">
+        </div>
+        <ul class="benefit-list benefit-list--right">
+          <li class="benefit reveal">
+            <p class="benefit__value benefit__value--word">Zero</p>
+            <h3 class="benefit__label">Lactose</h3>
+            <p class="benefit__desc">Fórmula sem lactose.</p>
+          </li>
+          <li class="benefit reveal">
+            <p class="benefit__value benefit__value--word">Zero</p>
+            <h3 class="benefit__label">Gordura</h3>
+            <p class="benefit__desc">Sem gordura na composição.</p>
+          </li>
+          <li class="benefit reveal">
+            <p class="benefit__value benefit__value--word">Zero</p>
+            <h3 class="benefit__label">Adição de açúcares</h3>
+            <p class="benefit__desc">Sem açúcares adicionados. O sabor adocicado vem do edulcorante sucralose.</p>
+          </li>
+        </ul>
+      </div>
+      <p class="footnote">Valores por unidade (100 ml), conforme informações do fabricante.</p>
+    </div>
+  </section>
+
+  <!-- 5 · MOMENTOS -->
+  <section class="section" id="momentos" aria-labelledby="moments-title">
+    <div class="container">
+      <header class="section-head section-head--split reveal">
+        <div style="display:grid;gap:18px">
+          <p class="eyebrow">No seu dia</p>
+          <h2 id="moments-title" class="h2">Seu ritmo. Seu momento. Seu <em>SHOTZ.</em></h2>
+        </div>
+        <p class="lead">Uma unidade de 100 ml cabe na bolsa, na mochila ou na gaveta do escritório.</p>
+      </header>
+    </div>
+    <div class="moments__scroller" tabindex="0" role="region" aria-label="Momentos para SHOTZ. Role para o lado para ver todos.">
+      <ul class="moments__list">
+        <li class="moment moment--work">
+          <figure>
+            <div class="moment__scene">
+              <span class="moment__tag"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg>Trabalho</span>
+              {%- liquid
+  assign img = section.settings.moment_work_image
+  assign img_alt = img.alt | default: 'Pessoa no trabalho com SHOTZ'
+-%}
+{%- if img != blank -%}{{ img | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 1024px) 24vw, 78vw', loading: 'lazy', alt: img_alt }}{%- else -%}<div data-art="scene-work" role="img" aria-label="Mesa de trabalho com notebook, caneca de café e uma garrafa de SHOTZ"></div>{%- endif -%}
+            </div>
+            <figcaption><h3>No trabalho</h3><p>Praticidade entre reuniões e compromissos.</p></figcaption>
+          </figure>
+        </li>
+        <li class="moment moment--gym">
+          <figure>
+            <div class="moment__scene">
+              <span class="moment__tag"><svg class="icon" aria-hidden="true"><use href="#i-dumbbell"/></svg>Academia</span>
+              {%- liquid
+  assign img = section.settings.moment_gym_image
+  assign img_alt = img.alt | default: 'Pessoa na academia com SHOTZ'
+-%}
+{%- if img != blank -%}{{ img | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 1024px) 24vw, 78vw', loading: 'lazy', alt: img_alt }}{%- else -%}<div data-art="scene-gym" role="img" aria-label="Tapete de yoga enrolado, halteres leves, toalha e uma garrafa de SHOTZ"></div>{%- endif -%}
+            </div>
+            <figcaption><h3>Na academia</h3><p>Uma opção prática para complementar a alimentação.</p></figcaption>
+          </figure>
+        </li>
+        <li class="moment moment--travel">
+          <figure>
+            <div class="moment__scene">
+              <span class="moment__tag"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg>Viagem</span>
+              {%- liquid
+  assign img = section.settings.moment_travel_image
+  assign img_alt = img.alt | default: 'Pessoa em viagem com SHOTZ'
+-%}
+{%- if img != blank -%}{{ img | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 1024px) 24vw, 78vw', loading: 'lazy', alt: img_alt }}{%- else -%}<div data-art="scene-travel" role="img" aria-label="Mala de viagem, óculos de sol, cartão de embarque e uma garrafa de SHOTZ"></div>{%- endif -%}
+            </div>
+            <figcaption><h3>Em viagens</h3><p>Proteína que ocupa pouco espaço.</p></figcaption>
+          </figure>
+        </li>
+        <li class="moment moment--daily">
+          <figure>
+            <div class="moment__scene">
+              <span class="moment__tag"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg>Rotina</span>
+              {%- liquid
+  assign img = section.settings.moment_daily_image
+  assign img_alt = img.alt | default: 'SHOTZ na rotina do dia a dia'
+-%}
+{%- if img != blank -%}{{ img | image_url: width: 900 | image_tag: widths: '360, 540, 720, 900', sizes: '(min-width: 1024px) 24vw, 78vw', loading: 'lazy', alt: img_alt }}{%- else -%}<div data-art="scene-daily" role="img" aria-label="Bancada iluminada pelo sol com fruteira, ecobag e uma garrafa de SHOTZ"></div>{%- endif -%}
+            </div>
+            <figcaption><h3>Na rotina</h3><p>Uma alternativa para momentos em que você busca praticidade.</p></figcaption>
+          </figure>
+        </li>
+      </ul>
+    </div>
+    <p class="moments__hint" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-arrow"/></svg>Deslize para ver os quatro momentos</p>
+  </section>
+
+  <!-- 6 · SABORES + COMPRA -->
+  <section class="section shop" id="comprar" aria-labelledby="shop-title" data-shop>
+    <div class="container">
+      <header class="section-head section-head--center reveal">
+        <p class="eyebrow">Sabores</p>
+        <h2 id="shop-title" class="h2">Dois sabores. A mesma <em>praticidade.</em></h2>
+      </header>
+
+      <div class="shop__grid">
+        <div class="flavor-stage" data-flavor-stage data-flavor="tropical">
+          <div class="flavor-stage__art" aria-hidden="true">
+            <img class="flavor-stage__photo" data-for="tropical" src="{{ 'shotz-flat-tropical-1200.webp' | asset_url }}" srcset="{{ 'shotz-flat-tropical-720.webp' | asset_url }} 720w, {{ 'shotz-flat-tropical-1200.webp' | asset_url }} 1200w" sizes="(min-width: 1024px) 50vw, 92vw" alt="" width="1200" height="1200" loading="lazy" decoding="async">
+            <img class="flavor-stage__photo" data-for="cranberry" src="{{ 'shotz-flat-cranberry-1200.webp' | asset_url }}" srcset="{{ 'shotz-flat-cranberry-720.webp' | asset_url }} 720w, {{ 'shotz-flat-cranberry-1200.webp' | asset_url }} 1200w" sizes="(min-width: 1024px) 50vw, 92vw" alt="" width="1200" height="1200" loading="lazy" decoding="async">
+          </div>
+          <div class="flavor-stage__info" aria-live="polite">
+            <p class="flavor-stage__kicker">Sabor</p>
+            <h3 class="flavor-stage__name" data-bind="flavor-name">Frutas Tropicais</h3>
+            <p class="flavor-stage__desc" data-bind="flavor-desc">Frutado, solar e refrescante, inspirado nas frutas amarelas tropicais. Textura leve, no estilo suco.</p>
+            <ul class="chips" data-bind="flavor-notes"><li>Frutado</li><li>Refrescante</li><li>Textura leve</li></ul>
+            <p class="flavor-stage__price">Caixa com 6 unidades: <strong data-bind="flavor-from">R$ 100,00</strong></p>
+            <div class="flavor-switch" role="group" aria-label="Ver sabor">
+              <button type="button" data-flavor-switch="tropical" aria-pressed="true">Frutas Tropicais</button>
+              <button type="button" data-flavor-switch="cranberry" aria-pressed="false">Cranberry</button>
+            </div>
+          </div>
+        </div>
+
+        {%- form 'product', product, class: 'buy-box', data-buy-box: '', novalidate: 'novalidate', aria-labelledby: 'buy-title' -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="selling_plan" value="" disabled>
+          <div class="buy-box__head">
+            <h3 id="buy-title" class="buy-box__title">SHOTZ<span>Suplemento alimentar líquido</span><span>23 g de proteína · 100 ml</span></h3>
+            <a class="rating-link" href="#avaliacoes"><svg class="icon" aria-hidden="true"><use href="#i-star"/></svg><span data-bind="review-count-label">21 avaliações</span></a>
+          </div>
+
+          <fieldset class="opt-group">
+            <legend>Sabor <span data-bind="flavor-name">Frutas Tropicais</span></legend>
+            <div class="flavor-options">
+              <label class="choice flavor-opt">
+                <input type="radio" name="flavor" value="tropical" checked>
+                <span class="choice__card"><span class="flavor-opt__img" aria-hidden="true"><img src="{{ 'shotz-bottle-tropical-96.webp' | asset_url }}" alt="" width="96" height="231" loading="lazy" decoding="async"></span><span class="flavor-opt__name">Frutas Tropicais</span></span>
+              </label>
+              <label class="choice flavor-opt">
+                <input type="radio" name="flavor" value="cranberry">
+                <span class="choice__card"><span class="flavor-opt__img" aria-hidden="true"><img src="{{ 'shotz-bottle-cranberry-96.webp' | asset_url }}" alt="" width="96" height="232" loading="lazy" decoding="async"></span><span class="flavor-opt__name">Cranberry</span></span>
+              </label>
+            </div>
+            <p class="opt-note" data-bind="kit-note">Starter Kit (2 Cranberry + 2 Frutas Tropicais): esgotado no momento.</p>
+          </fieldset>
+
+          <fieldset class="opt-group">
+            <legend>Quantidade</legend>
+            <div class="qty-options" data-qty-options>
+              <!-- Opções geradas a partir das variantes reais (ver shotz.js > renderQuantity) -->
+            </div>
+          </fieldset>
+
+          <fieldset class="opt-group" data-plan-group>
+            <legend>Como você quer receber</legend>
+            <div class="plan-options">
+              <label class="choice plan-opt">
+                <input type="radio" name="plan" value="once" checked>
+                <span class="choice__card">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span class="plan-opt__title">Compra única</span>
+                  <span class="plan-opt__meta">Pague uma vez, sem recorrência</span>
+                  <span class="plan-opt__price" data-plan-price="once">R$ 180,00</span>
+                </span>
+              </label>
+              <label class="choice plan-opt plan-opt--sub">
+                <input type="radio" name="plan" value="sub">
+                <span class="choice__card">
+                  <span class="radio-dot" aria-hidden="true"></span>
+                  <span class="plan-opt__title">Assinatura mensal <span class="badge badge--citrus" data-bind="sub-badge">15% OFF</span></span>
+                  <span class="plan-opt__meta">Entrega todo mês</span>
+                  <span class="plan-opt__price" data-plan-price="sub">R$ 153,00</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
+
+          <dl class="summary" aria-live="polite">
+            <div class="summary__row summary__row--total"><dt>Total</dt><dd><s data-sum="compare">R$ 200,00</s><span data-sum="total">R$ 180,00</span></dd></div>
+            <div class="summary__row"><dt>Preço por shot</dt><dd data-sum="unit">R$ 15,00</dd></div>
+            <div class="summary__row"><dt>Desconto aplicado</dt><dd class="summary__save" data-sum="save">R$ 20,00 (10%)</dd></div>
+            <div class="summary__row"><dt>Frete</dt><dd data-sum="ship"><span class="summary__ship-free"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Grátis</span></dd></div>
+          </dl>
+          <p class="save-detail" data-sum="detail">10% de desconto no kit com 2 caixas.</p>
+
+          <button type="submit" class="btn btn--primary btn--xl btn--block add-btn" data-add-btn>
+            <span data-add-label>Adicionar<span class="add-btn__long"> ao carrinho</span></span><span class="add-btn__price" data-sum="btn-price">R$ 180,00</span>
+          </button>
+
+          <ul class="buy-box__trust">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Checkout seguro da loja (Shopify)</li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Frete grátis acima de R$ 129,90</li>
+          </ul>
+        {%- endform -%}
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · COMPARAÇÃO -->
+  <section class="section" id="comparacao" aria-labelledby="compare-title">
+    <div class="container">
+      <header class="section-head section-head--split reveal">
+        <div style="display:grid;gap:18px">
+          <p class="eyebrow">Comparação</p>
+          <h2 id="compare-title" class="h2">Uma nova experiência em proteína.</h2>
+        </div>
+        <p class="lead">O que muda quando a proteína chega pronta para beber, lado a lado com o whey em pó.</p>
+      </header>
+      <div class="compare__wrap reveal">
+        <table class="compare-table">
+          <caption class="sr-only">Comparação entre SHOTZ e whey protein em pó tradicional</caption>
+          <thead>
+            <tr><th scope="col"><span class="sr-only">Característica</span></th><th scope="col" class="is-shotz"><span class="logo__word">SHOTZ</span></th><th scope="col">Whey em pó tradicional</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Fonte de proteína</th><td class="is-shotz" data-label="SHOTZ">Colágeno hidrolisado com mix de aminoácidos</td><td data-label="Whey em pó">Proteína do soro do leite</td></tr>
+            <tr><th scope="row">Quantidade de proteína</th><td class="is-shotz" data-label="SHOTZ"><span class="mark" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>23 g por unidade de 100 ml</td><td data-label="Whey em pó">Varia conforme a marca e o tamanho da dose indicada no rótulo</td></tr>
+            <tr><th scope="row">Formato de consumo</th><td class="is-shotz" data-label="SHOTZ"><span class="mark" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Shot líquido, dose única</td><td data-label="Whey em pó">Pó para diluir</td></tr>
+            <tr><th scope="row">Necessidade de preparo</th><td class="is-shotz" data-label="SHOTZ"><span class="mark" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Nenhuma: é abrir e beber</td><td data-label="Whey em pó">Medir, misturar com água ou leite e agitar</td></tr>
+            <tr><th scope="row">Portabilidade</th><td class="is-shotz" data-label="SHOTZ"><span class="mark" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Frasco de 100 ml, cabe na bolsa</td><td data-label="Whey em pó">Pote ou sachê, coqueteleira e líquido para misturar</td></tr>
+            <tr><th scope="row">Textura</th><td class="is-shotz" data-label="SHOTZ"><span class="mark" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Líquida e leve, no estilo suco</td><td data-label="Whey em pó">Depende do líquido e da quantidade usados no preparo</td></tr>
+            <tr><th scope="row">Presença de lactose</th><td class="is-shotz" data-label="SHOTZ"><span class="mark" aria-hidden="true"><svg class="icon"><use href="#i-check"/></svg></span>Zero lactose</td><td data-label="Whey em pó">Depende do tipo: o concentrado costuma conter lactose; isolados e hidrolisados têm teores menores. Confira o rótulo.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="compare__note">A coluna “Whey em pó tradicional” descreve a categoria em geral, não uma marca específica. Quantidade de proteína, textura e teor de lactose variam conforme o fabricante e a formulação de cada produto.</p>
+    </div>
+  </section>
+
+  <!-- 8 · AVALIAÇÕES -->
+  <section class="section reviews" id="avaliacoes" aria-labelledby="reviews-title">
+    <div class="container">
+      <header class="reviews__head">
+        <h2 id="reviews-title" class="h2 reveal">Quem experimenta, <em>entende.</em></h2>
+        <div class="reviews__summary" data-reviews-summary>
+          <!-- Preenchido por shotz.js com a nota média e o total vindos do app de avaliações -->
+        </div>
+        <div class="carousel-ctrl">
+          <button class="icon-btn" type="button" data-carousel-prev aria-label="Avaliações anteriores" aria-controls="reviews-viewport"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+          <button class="icon-btn" type="button" data-carousel-next aria-label="Próximas avaliações" aria-controls="reviews-viewport"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+        </div>
+      </header>
+    </div>
+    <div class="reviews__viewport" id="reviews-viewport" tabindex="0" role="region" aria-label="Avaliações de clientes" data-carousel>
+      <ul class="reviews__track" data-reviews-track></ul>
+    </div>
+    <div class="container reviews__app" data-reviews-app>{%- for block in section.blocks -%}{%- if block.type == '@app' -%}{% render block %}{%- endif -%}{%- endfor -%}</div>
+  </section>
+
+  <!-- 9 · CIÊNCIA E COMPOSIÇÃO -->
+  <section class="section" id="ciencia" aria-labelledby="science-title">
+    <div class="container">
+      <header class="section-head section-head--split reveal">
+        <div style="display:grid;gap:18px">
+          <p class="eyebrow">Nossa ciência</p>
+          <h2 id="science-title" class="h2">Transparência em cada <em>detalhe.</em></h2>
+        </div>
+        <p class="lead">O que vai em cada shot, de onde vem a proteína e como conservar. Sem letras miúdas.</p>
+      </header>
+
+      <div class="science__grid">
+        <article class="sci-card sci-card--source on-dark reveal">
+          <p class="sci-card__kicker"><svg class="icon" aria-hidden="true"><use href="#i-flask"/></svg>Fonte de proteína</p>
+          <h3>Colágeno hidrolisado, completado com aminoácidos</h3>
+          <p>A proteína do SHOTZ vem do colágeno hidrolisado. Sozinho, o colágeno não traz todos os aminoácidos essenciais. Por isso, a fórmula recebe um mix de aminoácidos que inclui os nove essenciais.</p>
+          <div class="formula" aria-label="Composição da proteína">
+            <p class="formula__item"><span class="formula__num">01</span><span>Colágeno hidrolisado<small>Base da proteína</small></span></p>
+            <p class="formula__op" aria-hidden="true">+</p>
+            <p class="formula__item"><span class="formula__num">02</span><span>Mix de aminoácidos<small>10 aminoácidos, incluindo os 9 essenciais</small></span></p>
+            <p class="formula__op" aria-hidden="true">=</p>
+            <p class="formula__item formula__item--result"><span class="formula__num">23g</span><span>de proteína por shot<small>em 100 ml</small></span></p>
+          </div>
+        </article>
+
+        <article class="sci-card reveal">
+          <p class="sci-card__kicker"><svg class="icon" aria-hidden="true"><use href="#i-dna"/></svg>Aminoácidos por unidade</p>
+          <div class="amino-figs">
+            <p class="amino-fig"><b>+5g</b><span>EAA</span></p>
+            <p class="amino-fig"><b>+2,5g</b><span>BCAA</span></p>
+            <p class="amino-fig"><b>+1,2g</b><span>Leucina</span></p>
+          </div>
+          <p>EAA são os aminoácidos essenciais. BCAA são os de cadeia ramificada: leucina, isoleucina e valina.</p>
+          <ul class="amino-list" aria-label="Aminoácidos do mix">
+            <li class="is-essential">L-leucina</li><li class="is-essential">L-valina</li><li class="is-essential">L-isoleucina</li><li class="is-essential">L-lisina</li><li class="is-essential">L-fenilalanina</li><li class="is-essential">L-metionina</li><li class="is-essential">L-histidina</li><li class="is-essential">L-treonina</li><li class="is-essential">L-triptofano</li><li>L-cistina</li>
+          </ul>
+          <p class="amino-legend">Aminoácido essencial</p>
+        </article>
+
+        <article class="sci-card reveal">
+          <p class="sci-card__kicker"><svg class="icon" aria-hidden="true"><use href="#i-table"/></svg>Informação nutricional</p>
+          <dl class="nutri-mini">
+            <div><dt>Proteínas</dt><dd>23 g</dd></div>
+            <div><dt>Valor energético</dt><dd>95 kcal</dd></div>
+            <div><dt>Carboidratos</dt><dd>0,8 g</dd></div>
+            <div><dt>Açúcares adicionados</dt><dd>0 g</dd></div>
+            <div><dt>Gorduras totais</dt><dd>0 g</dd></div>
+            <div><dt>Lactose</dt><dd>Zero</dd></div>
+          </dl>
+          <button class="btn btn--ghost btn--block" type="button" data-open-dialog="nutrition-dialog" aria-label="Ver tabela nutricional completa"><svg class="icon" aria-hidden="true"><use href="#i-table"/></svg>Tabela completa</button>
+        </article>
+
+        <article class="sci-card sci-card--ingredients reveal">
+          <p class="sci-card__kicker"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg>Ingredientes</p>
+          <p class="ingredients">Água, colágeno hidrolisado, mix de aminoácidos (L-leucina, L-valina, L-isoleucina, L-lisina, L-fenilalanina, L-metionina, L-histidina, L-treonina, L-triptofano e L-cistina), acidulantes ácido cítrico e ácido málico, aromatizantes, edulcorante sucralose, conservadores benzoato de sódio e sorbato de potássio e corante betacaroteno.</p>
+          <p>Lista publicada pela loja para o sabor Frutas Tropicais. Confira sempre o rótulo do sabor escolhido.</p>
+        </article>
+
+        <article class="sci-card reveal">
+          <p class="sci-card__kicker"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>Alergênicos</p>
+          <div class="allergen"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg><p><b>Alérgicos: pode conter soja.</b>Informação do fabricante.</p></div>
+          <div class="allergen"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg><p><b>Não contém glúten.</b>Zero lactose.</p></div>
+        </article>
+
+        <article class="sci-card reveal">
+          <p class="sci-card__kicker"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Conservação</p>
+          <ul style="display:grid;gap:8px">
+            <li><b>Validade:</b> 12 meses.</li>
+            <li>Conservar em local seco e fresco, ao abrigo da luz.</li>
+            <li>Após aberto, consumir imediatamente.</li>
+          </ul>
+        </article>
+      </div>
+      <p class="science__note">Informações conforme dados publicados pelo fabricante em meushotz.com.br. Em caso de divergência, vale o rótulo do produto. SHOTZ não substitui uma alimentação equilibrada; para orientação individual, consulte um nutricionista.</p>
+    </div>
+  </section>
+
+  <!-- 10 · FAQ -->
+  <section class="section faq" id="faq" aria-labelledby="faq-title">
+    <div class="container faq__grid">
+      <div class="faq__aside">
+        <p class="eyebrow">Dúvidas</p>
+        <h2 id="faq-title" class="h2">Perguntas frequentes</h2>
+        <p>Não encontrou o que procura? Fale com a gente.</p>
+        <a class="faq__contact" href="mailto:contato@meushotz.com.br"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>contato@meushotz.com.br</a>
+      </div>
+      <div class="accordion" data-accordion>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="true" aria-controls="faq-1" id="faq-1-btn">O que é SHOTZ?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel is-open" id="faq-1" role="region" aria-labelledby="faq-1-btn"><div><p>SHOTZ é um suplemento alimentar líquido de proteína, pronto para beber. Cada unidade de 100 ml tem 23 g de proteína e 95 kcal, com zero lactose, zero gordura e zero adição de açúcares.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-2" id="faq-2-btn">Quantas gramas de proteína existem em cada unidade?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-2" role="region" aria-labelledby="faq-2-btn"><div><p>23 g por unidade de 100 ml. A proteína vem do colágeno hidrolisado, combinado com um mix de aminoácidos que inclui os nove essenciais.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-3" id="faq-3-btn">Qual é o tamanho da embalagem?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-3" role="region" aria-labelledby="faq-3-btn"><div><p>Cada shot tem 100 ml. Os shots são vendidos em caixas com 6 unidades, e você pode levar 1, 2 ou 3 caixas.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-4" id="faq-4-btn">Quais são os sabores disponíveis?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-4" role="region" aria-labelledby="faq-4-btn"><div><p>Frutas Tropicais e Cranberry. O Starter Kit, com 2 unidades de cada sabor, está esgotado no momento.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-5" id="faq-5-btn">O produto contém lactose?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-5" role="region" aria-labelledby="faq-5-btn"><div><p>Não. SHOTZ é zero lactose e não contém glúten. Alérgicos: pode conter soja.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-6" id="faq-6-btn">Como consumir?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-6" role="region" aria-labelledby="faq-6-btn"><div><p>É só abrir e beber, sem preparo. Depois de aberto, consuma imediatamente. Para saber a quantidade ideal para a sua rotina, converse com um nutricionista.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-7" id="faq-7-btn">Precisa refrigerar?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-7" role="region" aria-labelledby="faq-7-btn"><div><p>A orientação do fabricante é conservar em local seco e fresco, ao abrigo da luz. A validade é de 12 meses. Depois de aberto, consuma imediatamente.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-8" id="faq-8-btn">Quais são os ingredientes?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-8" role="region" aria-labelledby="faq-8-btn"><div><p>Água, colágeno hidrolisado, mix de aminoácidos (L-leucina, L-valina, L-isoleucina, L-lisina, L-fenilalanina, L-metionina, L-histidina, L-treonina, L-triptofano e L-cistina), acidulantes ácido cítrico e ácido málico, aromatizantes, edulcorante sucralose, conservadores benzoato de sódio e sorbato de potássio e corante betacaroteno. Confira o rótulo do sabor escolhido.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-9" id="faq-9-btn">Como funciona a assinatura?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-9" role="region" aria-labelledby="faq-9-btn"><div><p>Na assinatura mensal, você recebe o mesmo pedido todo mês com 15% de desconto sobre o preço de cada entrega. Basta escolher “Assinatura mensal” ao comprar. As condições da assinatura são exibidas no checkout, antes da confirmação.</p></div></div>
+        </div>
+        <div class="acc-item">
+          <h3><button class="acc-trigger" type="button" aria-expanded="false" aria-controls="faq-10" id="faq-10-btn">Quais são os prazos e custos de entrega?<span class="acc-trigger__icon" aria-hidden="true"><svg class="icon icon--sm"><use href="#i-plus"/></svg></span></button></h3>
+          <div class="acc-panel" id="faq-10" role="region" aria-labelledby="faq-10-btn"><div><p>O frete e o prazo são calculados no checkout a partir do seu CEP, e o prazo varia conforme a localidade. Pedidos acima de R$ 129,90 têm frete grátis.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · CTA FINAL -->
+  <section class="final" id="experimente" aria-labelledby="final-title">
+    <div class="container">
+      <div class="final__panel">
+        <span class="final__orb final__orb--a" aria-hidden="true"></span>
+        <span class="final__orb final__orb--b" aria-hidden="true"></span>
+        <div class="final__copy">
+          <p class="eyebrow final__eyebrow">Experimente</p>
+          <h2 id="final-title">23g de proteína. <em>Zero complicação.</em></h2>
+          <p>Descubra uma maneira mais prática de incluir proteína na sua rotina.</p>
+          <a class="btn btn--citrus btn--xl" href="#comprar" data-track-cta="final">Quero experimentar <svg class="icon icon--arrow" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        </div>
+{%- liquid
+  assign final_img = section.settings.final_image
+  assign final_alt = final_img.alt | default: 'Garrafas de SHOTZ'
+-%}
+{%- if final_img != blank -%}
+        <div class="final__art final__art--photo">{{ final_img | image_url: width: 1200 | image_tag: widths: '480, 720, 960, 1200', sizes: '(min-width: 1024px) 45vw, 92vw', loading: 'lazy', alt: final_alt }}</div>
+{%- else -%}
+        <div class="final__art" aria-hidden="true">
+          <div class="final__sun"></div>
+          <img class="final__bottle final__bottle--a" src="{{ 'shotz-bottle-cranberry-360.webp' | asset_url }}" srcset="{{ 'shotz-bottle-cranberry-180.webp' | asset_url }} 180w, {{ 'shotz-bottle-cranberry-360.webp' | asset_url }} 360w" sizes="(min-width: 1024px) 150px, 110px" alt="" width="360" height="870" decoding="async" loading="lazy">
+          <img class="final__bottle final__bottle--b" src="{{ 'shotz-bottle-tropical-360.webp' | asset_url }}" srcset="{{ 'shotz-bottle-tropical-180.webp' | asset_url }} 180w, {{ 'shotz-bottle-tropical-360.webp' | asset_url }} 360w" sizes="(min-width: 1024px) 168px, 122px" alt="" width="360" height="866" decoding="async" loading="lazy">
+        </div>
+{%- endif -%}
+      </div>
+    </div>
+  </section>
+
+<!-- CTA fixo no mobile -->
+<div class="sticky-cta" data-sticky-cta aria-hidden="true" inert>
+  <span class="sticky-cta__thumb" data-bind="sticky-thumb" aria-hidden="true"></span>
+  <a class="sticky-cta__info" href="#comprar" aria-label="Ver opções de compra">
+    <span class="sticky-cta__title" data-bind="sticky-title">Frutas Tropicais · 2 caixas</span>
+    <span class="sticky-cta__price" data-bind="sticky-price">R$ 180,00</span>
+  </a>
+  <button class="btn btn--primary" type="button" data-sticky-add>Adicionar</button>
+</div>
+
+<!-- Carrinho lateral -->
+<div class="drawer" id="cart-drawer" data-drawer hidden>
+  <div class="drawer__overlay" data-drawer-close></div>
+  <section class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="cart-title" tabindex="-1" data-drawer-panel>
+    <header class="drawer__head">
+      <h2 id="cart-title">Seu carrinho <span data-cart-count-text>(0)</span></h2>
+      <button class="icon-btn" type="button" data-drawer-close aria-label="Fechar carrinho"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-x"/></svg></button>
+    </header>
+    <div class="ship-progress" data-ship-progress>
+      <p data-ship-text><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Frete grátis acima de R$ 129,90</p>
+      <div class="ship-progress__bar" role="progressbar" aria-label="Progresso para frete grátis" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-ship-bar><span></span></div>
+    </div>
+    <div class="drawer__body">
+      <ul class="cart-lines" data-cart-lines></ul>
+      <div class="cart-empty" data-cart-empty>
+        <img class="cart-empty__art" src="{{ 'shotz-bottle-tropical-180.webp' | asset_url }}" alt="" width="180" height="433" loading="lazy" decoding="async">
+        <p>Seu carrinho está vazio. Que tal começar pelo sabor Frutas Tropicais?</p>
+        <a class="btn btn--primary" href="#comprar" data-drawer-close>Escolher meu SHOTZ</a>
+      </div>
+      <div class="cross-sell" data-cross-sell hidden></div>
+    </div>
+    <footer class="drawer__foot" data-drawer-foot>
+      <dl class="cart-total"><dt>Subtotal</dt><dd data-cart-subtotal>R$ 0,00</dd></dl>
+      <p class="cart-total__save" data-cart-save></p>
+      <p class="drawer__note">Frete calculado no checkout a partir do seu CEP. Cupons são aplicados na finalização.</p>
+      <a class="btn btn--primary btn--xl btn--block" href="{{ routes.cart_url }}" data-checkout>Finalizar compra <svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></a>
+      <p class="drawer__secure"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Você vai para o checkout seguro da loja SHOTZ, processado pela Shopify.</p>
+    </footer>
+  </section>
+</div>
+
+<!-- Tabela nutricional -->
+<dialog class="modal" id="nutrition-dialog" aria-labelledby="nutrition-title">
+  <div class="modal__inner">
+    <div class="modal__head">
+      <h2 id="nutrition-title">Informação nutricional</h2>
+      <button class="icon-btn" type="button" data-close-dialog aria-label="Fechar tabela nutricional"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-x"/></svg></button>
+    </div>
+    {%- if section.settings.nutrition_image != blank -%}
+      {{ section.settings.nutrition_image | image_url: width: 1000 | image_tag: widths: '500, 750, 1000', sizes: '(min-width: 600px) 520px, 92vw', class: 'nutri-label', loading: 'lazy', alt: 'Tabela nutricional oficial do rótulo SHOTZ' }}
+    {%- endif -%}
+    <table class="nutri-table">
+      <caption>Porção de 100 ml (1 unidade)</caption>
+      <thead><tr><th scope="col">Nutriente</th><th scope="col">100 ml</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Valor energético</th><td>95 kcal</td></tr>
+        <tr><th scope="row">Carboidratos</th><td>0,8 g</td></tr>
+        <tr class="is-indent"><th scope="row">Açúcares adicionados</th><td>0 g</td></tr>
+        <tr><th scope="row">Proteínas</th><td>23 g</td></tr>
+        <tr><th scope="row">Gorduras totais</th><td>0 g</td></tr>
+        <tr class="is-pending"><th scope="row">Açúcares totais, gorduras saturadas e trans, fibra alimentar, sódio e %VD</th><td>Ver rótulo</td></tr>
+      </tbody>
+    </table>
+    <p class="modal__note" data-nutrition-note>{%- if section.settings.nutrition_image != blank -%}Acima, a tabela oficial do rótulo. Em caso de divergência, vale o rótulo do produto.{%- else -%}Valores declarados pelo fabricante. Os itens “Ver rótulo” constam na tabela impressa na embalagem.{%- endif -%}</p>
+    <button class="btn btn--primary btn--block" type="button" data-close-dialog>Fechar</button>
+  </div>
+</dialog>
+
+<!-- Preferências de cookies -->
+<dialog class="modal" id="consent-dialog" aria-labelledby="consent-title">
+  <div class="modal__inner">
+    <div class="modal__head">
+      <h2 id="consent-title">Preferências de cookies</h2>
+      <button class="icon-btn" type="button" data-close-dialog aria-label="Fechar preferências"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-x"/></svg></button>
+    </div>
+    <p>Usamos cookies de medição (Google Analytics 4) e de marketing (Meta Pixel) somente com a sua permissão. Cookies essenciais, como o do carrinho, estão sempre ativos.</p>
+    <p class="modal__note">Situação atual: <strong data-consent-status>não autorizado</strong></p>
+    <div class="consent-actions">
+      <button class="btn btn--ghost" type="button" data-consent="denied">Recusar</button>
+      <button class="btn btn--primary" type="button" data-consent="granted">Aceitar</button>
+    </div>
+  </div>
+</dialog>
+
+<p class="sr-only" aria-live="polite" data-announcer></p>
+
+{%- liquid
+  assign plan = product.selling_plan_groups.first.selling_plans.first
+  assign plan_pct = 0
+  if plan and plan.price_adjustments.first.value_type == 'percentage'
+    assign plan_pct = plan.price_adjustments.first.value
+  endif
+  assign notes_tropical = section.settings.tropical_notes | split: ','
+  assign notes_cranberry = section.settings.cranberry_notes | split: ','
+-%}
+<script type="application/json" id="shotz-config">
+{
+  "mode": "shopify",
+  "storeUrl": {{ request.origin | json }},
+  "productUrl": {{ request.origin | append: product.url | json }},
+  "productId": {{ product.id }},
+  "currency": {{ cart.currency.iso_code | json }},
+  "locale": {{ request.locale.iso_code | json }},
+  "unitsPerBox": {{ section.settings.units_per_box | default: 6 }},
+  "freeShippingThreshold": {{ section.settings.free_shipping_threshold | times: 100 | round }},
+  "sellingPlan": {% if plan %}{ "id": {{ plan.id }}, "name": {{ plan.name | json }}, "percentage": {{ plan_pct }} }{% else %}null{% endif %},
+  "flavors": {
+    "tropical": { "name": "Frutas Tropicais", "thumb": {{ 'shotz-bottle-tropical-96.webp' | asset_url | json }}, "description": {{ section.settings.tropical_description | json }}, "notes": [{%- for n in notes_tropical -%}{{ n | strip | json }}{% unless forloop.last %},{% endunless %}{%- endfor -%}] },
+    "cranberry": { "name": "Cranberry", "thumb": {{ 'shotz-bottle-cranberry-96.webp' | asset_url | json }}, "description": {{ section.settings.cranberry_description | json }}, "notes": [{%- for n in notes_cranberry -%}{{ n | strip | json }}{% unless forloop.last %},{% endunless %}{%- endfor -%}] }
+  },
+  "variants": [
+    {%- assign sep = '' -%}
+    {%- for v in product.variants -%}
+      {%- assign opt = v.option1 | downcase -%}
+      {%- assign fk = '' -%}
+      {%- if opt contains 'tropic' -%}{%- assign fk = 'tropical' -%}{%- elsif opt contains 'cranberry' -%}{%- assign fk = 'cranberry' -%}{%- endif -%}
+      {%- if fk == '' -%}{%- continue -%}{%- endif -%}
+      {%- assign boxes = v.option2 | split: ' ' | first | plus: 0 -%}
+      {%- assign sub_price = 'null' -%}
+      {%- for a in v.selling_plan_allocations -%}{%- if plan and a.selling_plan.id == plan.id -%}{%- assign sub_price = a.price -%}{%- endif -%}{%- endfor -%}
+      {{ sep }}{ "id": {{ v.id }}, "flavor": "{{ fk }}", "boxes": {{ boxes }}, "price": {{ v.price }}, "compareAt": {% if v.compare_at_price > v.price %}{{ v.compare_at_price }}{% else %}null{% endif %}, "subPrice": {{ sub_price }}, "available": {{ v.available }}, "sku": {{ v.sku | json }}, "image": {{ 'shotz-bottle-' | append: fk | append: '-96.webp' | asset_url | json }} }
+      {%- assign sep = ',' -%}
+    {%- endfor -%}
+  ],
+  "starterKit": {%- assign kit = null -%}{%- for v in product.variants -%}{%- assign opt = v.option1 | downcase -%}{%- if opt contains 'starter' -%}{%- assign kit = v -%}{%- endif -%}{%- endfor -%}
+    {%- if kit -%}{ "id": {{ kit.id }}, "price": {{ kit.price }}, "compareAt": {{ kit.compare_at_price | default: 'null' }}, "available": {{ kit.available }} }{%- else -%}null{%- endif -%},
+  "reviews": {
+    "count": {{ product.metafields.reviews.rating_count.value | default: 0 }},
+    "average": {% if product.metafields.reviews.rating.value != blank %}{{ product.metafields.reviews.rating.value.rating }}{% else %}null{% endif %},
+    "items": {% if product.metafields.shotz.featured_reviews.value != blank %}{{ product.metafields.shotz.featured_reviews.value | json }}{% else %}[]{% endif %},
+    "url": {% if section.settings.reviews_url != blank %}{{ section.settings.reviews_url | json }}{% else %}null{% endif %}
+  },
+  "instagramUrl": {% if settings.social_instagram_link != blank %}{{ settings.social_instagram_link | json }}{% else %}null{% endif %},
+  "analytics": { "ga4Id": null, "metaPixelId": null },
+  "defaults": { "flavor": "tropical", "boxes": 2, "plan": "once" },
+  "routes": { "root": {{ routes.root_url | json }} }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "O que é SHOTZ?", "acceptedAnswer": { "@type": "Answer", "text": "SHOTZ é um suplemento alimentar líquido de proteína, pronto para beber. Cada unidade de 100 ml tem 23 g de proteína e 95 kcal, com zero lactose, zero gordura e zero adição de açúcares." } },
+    { "@type": "Question", "name": "Quantas gramas de proteína existem em cada unidade?", "acceptedAnswer": { "@type": "Answer", "text": "Cada unidade de 100 ml tem 23 g de proteína." } },
+    { "@type": "Question", "name": "Quais são os sabores disponíveis?", "acceptedAnswer": { "@type": "Answer", "text": "Frutas Tropicais e Cranberry." } },
+    { "@type": "Question", "name": "O produto contém lactose?", "acceptedAnswer": { "@type": "Answer", "text": "Não. SHOTZ é zero lactose. Não contém glúten. Alérgicos: pode conter soja." } }
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "SHOTZ · Página de produto",
+  "tag": "div",
+  "class": "shotz-product",
+  "settings": [
+    { "type": "header", "content": "Fotografias" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero", "info": "Produto com frutas tropicais, gelo e luz natural. Proporção quase quadrada. Sem foto, aparece a composição ilustrada." },
+    { "type": "image_picker", "id": "moment_work_image", "label": "Momento: trabalho", "info": "Retrato 4:5" },
+    { "type": "image_picker", "id": "moment_gym_image", "label": "Momento: academia", "info": "Retrato 4:5" },
+    { "type": "image_picker", "id": "moment_travel_image", "label": "Momento: viagem", "info": "Retrato 4:5" },
+    { "type": "image_picker", "id": "moment_daily_image", "label": "Momento: rotina", "info": "Retrato 4:5" },
+    { "type": "image_picker", "id": "final_image", "label": "CTA final" },
+    { "type": "image_picker", "id": "nutrition_image", "label": "Tabela nutricional oficial", "info": "Imagem do rótulo, exibida em “Tabela completa”." },
+    { "type": "header", "content": "Regras comerciais" },
+    { "type": "number", "id": "free_shipping_threshold", "label": "Frete grátis a partir de (R$)", "default": 129.9, "info": "Use o mesmo valor configurado em Configurações > Frete e entrega." },
+    { "type": "number", "id": "units_per_box", "label": "Unidades por caixa", "default": 6 },
+    { "type": "header", "content": "Sabores" },
+    { "type": "textarea", "id": "tropical_description", "label": "Frutas Tropicais: descrição", "default": "Frutado, solar e refrescante, inspirado nas frutas amarelas tropicais. Textura leve, no estilo suco." },
+    { "type": "text", "id": "tropical_notes", "label": "Frutas Tropicais: notas (separadas por vírgula)", "default": "Frutado, Refrescante, Textura leve" },
+    { "type": "textarea", "id": "cranberry_description", "label": "Cranberry: descrição", "default": "Frutado e levemente ácido, com final refrescante. Textura leve, no estilo suco." },
+    { "type": "text", "id": "cranberry_notes", "label": "Cranberry: notas (separadas por vírgula)", "default": "Levemente ácido, Refrescante, Textura leve" },
+    { "type": "header", "content": "Avaliações" },
+    { "type": "url", "id": "reviews_url", "label": "Link para todas as avaliações" },
+    { "type": "paragraph", "content": "Adicione o bloco de carrossel do seu app de avaliações (Judge.me, Loox, Yotpo etc.) a esta seção. Nota média e total vêm dos metafields padrão reviews.rating e reviews.rating_count." }
+  ],
+  "blocks": [ { "type": "@app" } ]
+}
+{% endschema %}

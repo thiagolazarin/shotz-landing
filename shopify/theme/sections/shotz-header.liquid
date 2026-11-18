@@ -1,0 +1,77 @@
+{%- if section.settings.show_announcement -%}
+<div class="announce" role="region" aria-label="Promoções da loja">
+  <div class="announce__track" data-announce>
+    {%- assign icons = 'truck,sparkles,repeat' | split: ',' -%}
+    {%- assign shown = 0 -%}
+    {%- for i in (1..3) -%}
+      {%- assign key = 'announcement_' | append: i -%}
+      {%- assign msg = section.settings[key] -%}
+      {%- if msg != blank -%}
+        <p class="announce__item{% if shown == 0 %} is-active{% endif %}"><svg class="icon" aria-hidden="true"><use href="#i-{{ icons[forloop.index0] }}"/></svg>{{ msg | escape }}</p>
+        {%- assign shown = shown | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+{%- endif -%}
+
+<header class="site-header" data-header>
+  <div class="container site-header__bar">
+    <a class="logo" href="#inicio" aria-label="{{ shop.name | escape }}, ir para o início">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: height: 56 | image_tag: class: 'logo__img', alt: shop.name, loading: 'eager' }}
+      {%- else -%}
+      <span class="logo__word">SHOTZ</span>
+      {%- endif -%}
+    </a>
+    <nav class="primary-nav" aria-label="Principal">
+      <ul>
+        <li><a href="#inicio" data-nav>Início</a></li>
+        <li><a href="#produto" data-nav>O produto</a></li>
+        <li><a href="#ciencia" data-nav>Nossa ciência</a></li>
+        <li><a href="#avaliacoes" data-nav>Avaliações</a></li>
+        <li><a href="#faq" data-nav>FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <a class="btn btn--primary btn--sm header-cta" href="#comprar" data-track-cta="header">Comprar agora</a>
+      <button class="icon-btn" type="button" data-cart-open aria-controls="cart-drawer" aria-expanded="false" aria-label="Abrir carrinho">
+        <svg class="icon icon--lg" aria-hidden="true"><use href="#i-bag"/></svg>
+        <span class="cart-count{% if cart.item_count > 0 %} has-items{% endif %}" data-cart-count aria-hidden="true">{{ cart.item_count }}</span>
+      </button>
+      <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-controls="mobile-menu" aria-expanded="false" aria-label="Abrir menu">
+        <svg class="icon icon--lg" aria-hidden="true" data-menu-icon><use href="#i-menu"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+    <nav aria-label="Menu">
+      <ul>
+        <li><a href="#inicio">Início <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="#produto">O produto <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="#ciencia">Nossa ciência <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="#avaliacoes">Avaliações <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+        <li><a href="#faq">FAQ <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--xl btn--block" href="#comprar" data-track-cta="menu">Comprar agora</a>
+    <ul class="mobile-menu__trust">
+      <li><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg>Frete grátis acima de R$ 129,90</li>
+      <li><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg>Assinatura mensal com 15% de desconto</li>
+      {%- if section.settings.contact_email != blank -%}<li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>{{ section.settings.contact_email }}</li>{%- endif -%}
+    </ul>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "SHOTZ · Cabeçalho",
+  "settings": [
+    { "type": "checkbox", "id": "show_announcement", "label": "Mostrar barra de campanhas", "default": true },
+    { "type": "text", "id": "announcement_1", "label": "Campanha 1", "default": "Frete grátis em pedidos acima de R$ 129,90" },
+    { "type": "text", "id": "announcement_2", "label": "Campanha 2", "default": "10% OFF na sua primeira compra" },
+    { "type": "text", "id": "announcement_3", "label": "Campanha 3", "default": "Assinatura mensal com 15% de desconto" },
+    { "type": "text", "id": "contact_email", "label": "E-mail no menu mobile", "default": "contato@meushotz.com.br" }
+  ]
+}
+{% endschema %}
